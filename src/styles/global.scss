@@ -4,27 +4,6 @@ $tertiary-color: #679436;
 $forth-color: #a5be00;
 $fifth-color: #ebf2fa;
 
-@font-face {
-  font-family: "Pretendard";
-  src: url("/fonts/Pretendard-Regular.woff2");
-  font-weight: 400;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Pretendard";
-  src: url("/fonts/Pretendard-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Pretendard";
-  src: url("/fonts/Pretendard-Light.woff2") format("woff2");
-  font-weight: 300;
-  font-display: swap;
-}
-
 body {
-  font-family: "Pretendard", sans-serif;
+  font-family: "Lato", sans-serif;
 }
