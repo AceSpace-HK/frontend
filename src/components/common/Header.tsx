@@ -3,19 +3,22 @@
 import { useState } from "react";
 import Modal from "./Modal";
 import styles from "@styles/common/header.module.scss";
+import Button from "./Button";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
+  const router = useRouter();
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSignupOpen, setIsSignupOpen] = useState(false);
 
   return (
     <header className={styles.header}>
-      <h1 className={styles.logo} onClick={() => (window.location.href = "/")}>
+      <h1 className={styles.logo} onClick={() => router.push("/")}>
         AceSpace
       </h1>
       <div className={styles.authButtons}>
-        <button onClick={() => setIsLoginOpen(true)}>Login</button>
-        <button onClick={() => setIsSignupOpen(true)}>Sign Up</button>
+        <Button onClick={() => setIsLoginOpen(true)}>Login</Button>
+        <Button onClick={() => setIsSignupOpen(true)}>Sign Up</Button>
       </div>
 
       {/* 로그인 모달 */}

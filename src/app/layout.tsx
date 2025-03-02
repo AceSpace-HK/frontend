@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Lato } from "next/font/google";
+import { Lato } from "next/font/google";
 import "@styles/global.scss";
 import Header from "@/components/common/Header";
+import { useRouter } from "next/navigation";
 
 const lato = Lato({
   variable: "--font-lato",
