@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import Modal from "./Modal";
 import styles from "@styles/common/header.module.scss";
 import Button from "./Button";
 import { useRouter } from "next/navigation";
+import SignupModal from "../main/SignupModal";
+import LoginModal from "../main/LoginModal";
 
 const Header = () => {
   const router = useRouter();
@@ -22,16 +23,18 @@ const Header = () => {
       </div>
 
       {/* 로그인 모달 */}
-      <Modal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)}>
-        <h2>Login</h2>
-        <p>로그인 폼이 들어갈 자리</p>
-      </Modal>
+      <LoginModal
+        isOpen={isLoginOpen}
+        isFull={true}
+        onClose={() => setIsLoginOpen(false)}
+      />
 
       {/* 회원가입 모달 */}
-      <Modal isOpen={isSignupOpen} onClose={() => setIsSignupOpen(false)}>
-        <h2>Sign Up</h2>
-        <p>회원가입 폼이 들어갈 자리</p>
-      </Modal>
+      <SignupModal
+        isOpen={isSignupOpen}
+        isFull={true}
+        onClose={() => setIsSignupOpen(false)}
+      />
     </header>
   );
 };

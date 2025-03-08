@@ -1,13 +1,40 @@
+@import "../variables.scss";
+
 .button {
-  background: transparent;
-  color: white;
-  border: 1px solid white;
   padding: 0.5rem 1rem;
   cursor: pointer;
   transition: 0.3s;
+}
+
+.full {
+  width: 100%;
+}
+
+.primary {
+  border: 1px solid white;
+  background-color: transparent;
+  color: white;
+}
+
+.secondary {
+  border: none;
+  background-color: $secondary-color;
+  color: white;
 
   &:hover {
-    background-color: white;
-    color: black;
+    background-color: $secondary-color;
+    color: white;
+  }
+}
+
+.tertiary {
+  border: none;
+  background-color: $tertiary-color;
+  color: white;
+
+  &:hover {
+    border: none;
+    background-color: $tertiary-color;
+    color: white;
   }
 }

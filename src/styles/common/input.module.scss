@@ -1,0 +1,20 @@
+@import "../variables.scss";
+
+.input {
+  width: 100%;
+  padding: 0.5rem;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: all 0.3s ease-in-out;
+  outline: none;
+
+  &:focus {
+    border-color: $primary-color;
+  }
+
+  &::placeholder {
+    color: #aaa;
+  }
+}
