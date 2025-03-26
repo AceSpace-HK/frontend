@@ -1,0 +1,100 @@
+@import "../variables.scss";
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.heroImage {
+  object-fit: cover;
+  filter: brightness(50%) grayscale(100%);
+}
+
+.header {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
+
+.authButtons {
+  display: flex;
+  gap: 12px;
+}
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 960px;
+  text-align: center;
+  padding: 0 16px;
+  color: white;
+  z-index: 5;
+}
+
+.headline {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.subheadline {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.searchBar {
+  display: flex;
+  background: white;
+  border-radius: 999px;
+  padding: 12px 20px;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+
+  input,
+  select {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    padding: 12px 8px;
+    font-size: 14px;
+    outline: none;
+    background: transparent;
+    flex: 1 1 140px;
+  }
+
+  button {
+    background-color: #1e4bff;
+    color: white;
+    padding: 12px 28px;
+    font-weight: bold;
+    font-size: 14px;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background-color: #0036d6;
+    }
+  }
+}

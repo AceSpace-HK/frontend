@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import styles from "@styles/common/header.module.scss";
-import Button from "./Button";
+import Button from "../common/Button";
 import { useRouter } from "next/navigation";
-import SignupModal from "../main/SignupModal";
-import LoginModal from "../main/LoginModal";
+import SignupModal from "./SignupModal";
+import LoginModal from "./LoginModal";
 
 const Header = () => {
   const router = useRouter();
