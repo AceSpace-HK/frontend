@@ -1,14 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import styles from "@styles/main/Hero.module.scss";
+import styles from "@styles/main/MainTopSection.module.scss";
 import { useRouter } from "next/navigation";
-import SignupModal from "./SignupModal";
-import LoginModal from "./LoginModal";
+import SignupModal from "../layout/SignupModal";
+import LoginModal from "../layout/LoginModal";
 import Button from "../common/Button";
 import { useState } from "react";
+import MainSearch from "./MainSearch";
 
-export default function Hero() {
+const MainTopSection = () => {
   const router = useRouter();
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSignupOpen, setIsSignupOpen] = useState(false);
@@ -36,23 +37,11 @@ export default function Hero() {
 
       {/* Overlay */}
       <div className={styles.overlay}>
-        <h1 className={styles.headline}>
-          Find where and with whom to play Tennis
-        </h1>
+        <h1 className={styles.headline}>Find where to play Tennis</h1>
         <p className={styles.subheadline}>
           Book nearby courts and matches instantly.
         </p>
-
-        <form className={styles.searchBar}>
-          <input type="text" placeholder="Address, club name, city..." />
-          <select>
-            <option value="tennis">Tennis</option>
-            <option value="padel">Padel</option>
-          </select>
-          <input type="date" />
-          <input type="time" />
-          <button type="submit">Search</button>
-        </form>
+        <MainSearch />
       </div>
 
       <LoginModal
@@ -67,4 +56,5 @@ export default function Hero() {
       />
     </div>
   );
-}
+};
+export default MainTopSection;

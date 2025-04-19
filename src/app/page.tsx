@@ -1,10 +1,13 @@
-import Hero from "@/components/layout/Hero";
-import { useRouter } from "next/router";
+import MainBottomSection from "@/components/main/MainBottomSection";
+import MainTopSection from "@/components/main/MainTopSection";
 
-export default function Home() {
+const Home = () => {
   return (
     <div>
-      <Hero />
+      <MainTopSection />
+      <MainBottomSection />
     </div>
   );
-}
+};
+
+export default Home;

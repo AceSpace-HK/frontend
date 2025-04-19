@@ -21,20 +21,20 @@ const useAuth = () => {
     nickname,
   }: SignupData) => {
     if (password !== confirmPassword) {
-      alert("비밀번호가 일치하지 않습니다.");
+      alert("Passwords do not match.");
       return { success: false };
     }
     try {
       const response = await signUpApi({ email, password, nickname });
       if (response.data.code === 201) {
-        alert("회원가입이 완료되었습니다.");
+        alert("Sign-up successful.");
         return { success: true };
       } else {
-        alert(response.data.message || "회원가입에 실패했습니다.");
+        alert(response.data.message || "Sign-up failed.");
       }
     } catch (error) {
-      console.error("회원가입 오류:", error);
-      alert("회원가입 중 오류가 발생했습니다.");
+      console.error("Sign-up error:", error);
+      alert("An error occurred during sign-up.");
     }
     return { success: false };
   };
@@ -43,17 +43,16 @@ const useAuth = () => {
     try {
       const response = await loginApi({ email, password });
       if (response.data.code === 200) {
-        alert("로그인 성공!");
+        alert("Login successful!");
         console.log(response.data);
         const token = response.data.token;
         return { success: true };
       } else {
-        alert(response.data.message || "로그인 실패");
+        alert(response.data.message || "Login failed.");
       }
     } catch (error) {
-      console.error("로그인 오류:", error);
-      alert("로그인 중 오류가 발생했습니다.");
-    } finally {
+      console.error("Login error:", error);
+      alert("An error occurred during login.");
     }
     return { success: false };
   };

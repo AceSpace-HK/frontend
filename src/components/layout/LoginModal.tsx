@@ -3,8 +3,6 @@ import Modal from "../common/Modal";
 import Input from "../common/Input";
 import Button from "../common/Button";
 import useAuth from "@/hooks/useAuth";
-import { regExp } from "@/constants/regExp";
-import { ERROR_MESSAGES } from "@/constants/errorMessages";
 
 interface LoginModalProps {
   isOpen: boolean;

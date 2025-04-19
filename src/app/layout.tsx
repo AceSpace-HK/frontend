@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Lato } from "next/font/google";
 import "@styles/global.scss";
-import Header from "@/components/layout/Header";
-import { useRouter } from "next/navigation";
+import Providers from "./providers";
 
 const lato = Lato({
   variable: "--font-lato",
@@ -23,8 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${lato.variable}`}>
-        {/* <Header /> */}
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
