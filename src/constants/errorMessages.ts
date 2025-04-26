@@ -8,11 +8,9 @@ export const ERROR_MESSAGES = {
   validationMsg: {
     EMPTY_VALUE: "This field cannot be empty.",
     EMAIL_FORMAT: "Please enter a valid email address.",
-    PASSWORD_WEAK:
-      "Your password must be 8-20 characters long and include at least one letter, one number, and one special character.",
+    PASSWORD_WEAK: "8–20 chars, incl. uppercase, number & special character.",
     PASSWORD_MISMATCH: "Passwords do not match.",
-    NICKNAME_WEAK:
-      "Nicknames must be 2-10 characters long and contain only letters, numbers, or Korean characters.",
+    NICKNAME_WEAK: "4-10 chrs, incl. only letters&numbers.",
     PHONE_NUMBER_FORMAT: "Please enter numbers only.",
   },
   networkMsg: {

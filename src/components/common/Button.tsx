@@ -7,6 +7,7 @@ interface ButtonProps {
   onClick?: () => void;
   theme?: "primary" | "secondary" | "tertiary";
   isFull?: boolean;
+  className?: string; // ✅ 추가
 }
 
 const Button = ({
@@ -14,12 +15,18 @@ const Button = ({
   onClick,
   theme = "primary",
   isFull = false,
+  className,
 }: ButtonProps) => {
   return (
     <button
-      className={classNames(styles.button, styles[theme], {
-        [styles.full]: isFull,
-      })}
+      className={classNames(
+        styles.button,
+        styles[theme],
+        {
+          [styles.full]: isFull,
+        },
+        className
+      )}
       onClick={onClick}
     >
       {children}

@@ -2,17 +2,17 @@
 
 import Image from "next/image";
 import styles from "@styles/main/MainTopSection.module.scss";
-import { useRouter } from "next/navigation";
 import SignupModal from "../layout/SignupModal";
 import LoginModal from "../layout/LoginModal";
 import Button from "../common/Button";
 import { useState } from "react";
 import MainSearch from "./MainSearch";
+import { useRouter } from "next/navigation";
 
 const MainTopSection = () => {
-  const router = useRouter();
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSignupOpen, setIsSignupOpen] = useState(false);
+  const router = useRouter();
 
   return (
     <div className={styles.hero}>

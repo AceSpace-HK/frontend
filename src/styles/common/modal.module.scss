@@ -13,16 +13,15 @@
 
 .modal {
   background: white;
-  color: black;
   padding: 2rem;
   border-radius: 10px;
-  min-width: 300px;
-  max-width: 400px;
+  width: 350px;
+  max-width: 90%;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
   z-index: 1001;
 }
 
@@ -34,4 +33,11 @@
   background: none;
   font-size: 1.5rem;
   cursor: pointer;
+}
+
+/* ✅ 인풋과 에러 메시지 포함하는 폼 컨트롤 */
+.form-control {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
 }

@@ -1,26 +1,26 @@
-import { fetchComplexesSearch } from "@/api/complexApi";
-import styles from "@styles/main/MainTopSection.module.scss";
 import { useState } from "react";
+import styles from "@styles/main/MainTopSection.module.scss";
 import Input from "../common/Input";
+import { useRouter } from "next/navigation";
 
 const MainSearch = () => {
   const [keyword, setKeyword] = useState("");
   const [sport, setSport] = useState("tennis");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
+  const router = useRouter();
 
-  const handleSearch = async (e: React.FormEvent) => {
+  const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
 
-    try {
-      const params = {
-        search: keyword,
-      };
-      const results = await fetchComplexesSearch(params);
-      console.log("search results", results);
-    } catch (error) {
-      console.log("error", error);
-    }
+    const params = new URLSearchParams({
+      keyword,
+      sport,
+      date,
+      time,
+    });
+
+    router.push(`/search-result?${params.toString()}`);
   };
 
   return (

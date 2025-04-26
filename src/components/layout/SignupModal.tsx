@@ -3,8 +3,14 @@ import Modal from "../common/Modal";
 import Input from "../common/Input";
 import Button from "../common/Button";
 import useAuth from "@/hooks/useAuth";
-import { regExp } from "@/constants/regExp";
-import { ERROR_MESSAGES } from "@/constants/errorMessages";
+import styles from "@styles/layout/signupModal.module.scss";
+import ErrorText from "../common/ErrorText";
+import {
+  validateConfirmPassword,
+  validateEmail,
+  validateNickname,
+  validatePassword,
+} from "@/hooks/useValidation";
 
 interface SignupModalProps {
   isOpen: boolean;
@@ -28,62 +34,37 @@ const SignupModal = ({ isOpen, onClose }: SignupModalProps) => {
 
   const validateField = (field: string, value: string) => {
     let error = "";
-
-    if (field === "email") {
-      if (!value.trim()) {
-        error = ERROR_MESSAGES.validationMsg.EMPTY_VALUE;
-      } else if (!regExp.email.test(value)) {
-        error = ERROR_MESSAGES.validationMsg.EMAIL_FORMAT;
-      }
-    }
-
-    if (field === "password") {
-      if (!value.trim()) {
-        error = ERROR_MESSAGES.validationMsg.EMPTY_VALUE;
-      } else if (!regExp.password.test(value)) {
-        error = ERROR_MESSAGES.validationMsg.PASSWORD_WEAK;
-      }
-    }
-
-    if (field === "confirmPassword") {
-      if (!value.trim()) {
-        error = ERROR_MESSAGES.validationMsg.EMPTY_VALUE;
-      } else if (value !== password) {
-        error = ERROR_MESSAGES.validationMsg.PASSWORD_MISMATCH;
-      }
-    }
-
-    if (field === "nickname") {
-      if (!value.trim()) {
-        error = ERROR_MESSAGES.validationMsg.EMPTY_VALUE;
-      } else if (!regExp.nickname.test(value)) {
-        error = ERROR_MESSAGES.validationMsg.NICKNAME_WEAK;
-      }
-    }
-
+    if (field === "email") error = validateEmail(value);
+    if (field === "password") error = validatePassword(value);
+    if (field === "confirmPassword")
+      error = validateConfirmPassword(password, value);
+    if (field === "nickname") error = validateNickname(value);
     setErrors((prev) => ({ ...prev, [field]: error }));
   };
 
   const validateAllFields = () => {
-    const newErrors: {
-      email?: string;
-      password?: string;
-      confirmPassword?: string;
-      nickname?: string;
-    } = {};
-
-    if (!regExp.email.test(email))
-      newErrors.email = ERROR_MESSAGES.validationMsg.EMAIL_FORMAT;
-    if (!regExp.password.test(password))
-      newErrors.password = ERROR_MESSAGES.validationMsg.PASSWORD_WEAK;
-    if (password !== confirmPassword)
-      newErrors.confirmPassword =
-        ERROR_MESSAGES.validationMsg.PASSWORD_MISMATCH;
-    if (!regExp.nickname.test(nickname))
-      newErrors.nickname = ERROR_MESSAGES.validationMsg.NICKNAME_WEAK;
+    const newErrors = {
+      email: validateEmail(email),
+      password: validatePassword(password),
+      confirmPassword: validateConfirmPassword(password, confirmPassword),
+      nickname: validateNickname(nickname),
+    };
 
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    return Object.values(newErrors).every((err) => !err);
+  };
+
+  const resetForm = () => {
+    setEmail("");
+    setPassword("");
+    setConfirmPassword("");
+    setNickname("");
+    setErrors({});
+  };
+
+  const handleModalClose = () => {
+    resetForm();
+    onClose();
   };
 
   const handleSignUp = async () => {
@@ -97,59 +78,61 @@ const SignupModal = ({ isOpen, onClose }: SignupModalProps) => {
     });
 
     if (response.success) {
-      setEmail("");
-      setPassword("");
-      setConfirmPassword("");
-      setNickname("");
-      setErrors({});
+      resetForm();
       onClose();
     }
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
-      <h2>Sign Up</h2>
-      <Input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        onBlur={() => validateField("email", email)}
-      />
-      {errors.email && <p className="error">{errors.email}</p>}
+    <Modal isOpen={isOpen} onClose={handleModalClose}>
+      <div className={styles.wrapper}>
+        <h2>Sign Up</h2>
+        <Input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          onBlur={() => validateField("email", email)}
+        />
+        <ErrorText message={errors.email} />
 
-      <Input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        onBlur={() => validateField("password", password)}
-      />
-      {errors.password && <p className="error">{errors.password}</p>}
+        <Input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          onBlur={() => validateField("password", password)}
+        />
+        <ErrorText message={errors.password} />
 
-      <Input
-        type="password"
-        placeholder="Confirm Password"
-        value={confirmPassword}
-        onChange={(e) => setConfirmPassword(e.target.value)}
-        onBlur={() => validateField("confirmPassword", confirmPassword)}
-      />
-      {errors.confirmPassword && (
-        <p className="error">{errors.confirmPassword}</p>
-      )}
+        <Input
+          type="password"
+          placeholder="Confirm Password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          onBlur={() => validateField("confirmPassword", confirmPassword)}
+        />
+        <ErrorText message={errors.confirmPassword} />
 
-      <Input
-        type="text"
-        placeholder="Nickname"
-        value={nickname}
-        onChange={(e) => setNickname(e.target.value)}
-        onBlur={() => validateField("nickname", nickname)}
-      />
-      {errors.nickname && <p className="error">{errors.nickname}</p>}
-
-      <Button theme="tertiary" isFull={true} onClick={handleSignUp}>
-        Sign up
-      </Button>
+        <Input
+          type="text"
+          placeholder="Nickname"
+          value={nickname}
+          onChange={(e) => setNickname(e.target.value)}
+          onBlur={() => validateField("nickname", nickname)}
+        />
+        <ErrorText message={errors.nickname} />
+      </div>
+      <div className={styles.btnWrapper}>
+        <Button
+          className={styles.closeBtn}
+          theme="tertiary"
+          isFull={true}
+          onClick={handleSignUp}
+        >
+          Sign up
+        </Button>
+      </div>
     </Modal>
   );
 };

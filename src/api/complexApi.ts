@@ -2,6 +2,7 @@ import axios from "@/axios/axios";
 
 export interface Complex {
   _id: string;
+  court_id: number;
   complex_name_EN: string;
   address_EN: string;
   district_EN: string;
@@ -23,6 +24,11 @@ export interface ComplexSearchParams {
 
 export const fetchAllCourts = async (): Promise<Complex[]> => {
   const response = await axios.get("/courts");
+  return response.data;
+};
+
+export const fetchAllComplexes = async (): Promise<Complex[]> => {
+  const response = await axios.get("/complexes");
   return response.data;
 };
 
