@@ -1,0 +1,15 @@
+.mainContent {
+  display: flex;
+  gap: 1rem;
+}
+
+.gridWrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+.mapWrapper {
+  flex: 1;
+  min-width: 300px;
+  height: 600px;
+}

@@ -1,5 +1,5 @@
 import { Complex } from "@/api/complexApi";
-import styles from "@styles/main/MainBottomSection.module.scss";
+import styles from "@styles/common/courtCard.module.scss";
 
 interface CourtCardProps {
   court: Complex;
