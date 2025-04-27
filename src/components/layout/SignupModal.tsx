@@ -86,7 +86,7 @@ const SignupModal = ({ isOpen, onClose }: SignupModalProps) => {
   return (
     <Modal isOpen={isOpen} onClose={handleModalClose}>
       <div className={styles.wrapper}>
-        <h2>Sign Up</h2>
+        <h2 className={styles.title}>Sign Up</h2>
         <Input
           type="email"
           placeholder="Email"

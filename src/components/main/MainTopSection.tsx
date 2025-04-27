@@ -4,10 +4,10 @@ import Image from "next/image";
 import styles from "@styles/main/MainTopSection.module.scss";
 import SignupModal from "../layout/SignupModal";
 import LoginModal from "../layout/LoginModal";
-import Button from "../common/Button";
 import { useState } from "react";
 import MainSearch from "./MainSearch";
 import { useRouter } from "next/navigation";
+import Header from "../layout/Header";
 
 const MainTopSection = () => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -23,17 +23,6 @@ const MainTopSection = () => {
         className={styles.heroImage}
         priority
       />
-
-      {/* Header */}
-      <div className={styles.header}>
-        <h1 className={styles.logo} onClick={() => router.push("/")}>
-          AceSpace
-        </h1>
-        <div className={styles.authButtons}>
-          <Button onClick={() => setIsLoginOpen(true)}>Login</Button>
-          <Button onClick={() => setIsSignupOpen(true)}>Sign Up</Button>
-        </div>
-      </div>
 
       {/* Overlay */}
       <div className={styles.overlay}>

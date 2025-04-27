@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Lato } from "next/font/google";
 import "@styles/global.scss";
 import Providers from "./providers";
+import { ToastContainer } from "react-toastify";
 
 const lato = Lato({
   variable: "--font-lato",
@@ -23,6 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${lato.variable}`}>
         <Providers>{children}</Providers>
+        <ToastContainer />
       </body>
     </html>
   );

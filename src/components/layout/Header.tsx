@@ -6,14 +6,23 @@ import Button from "../common/Button";
 import { useRouter } from "next/navigation";
 import SignupModal from "./SignupModal";
 import LoginModal from "./LoginModal";
+import classNames from "classnames";
 
-const Header = () => {
+interface HeaderProps {
+  isTransparent?: boolean;
+}
+
+const Header = ({ isTransparent = false }: HeaderProps) => {
   const router = useRouter();
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSignupOpen, setIsSignupOpen] = useState(false);
 
   return (
-    <header className={styles.header}>
+    <header
+      className={classNames(styles.header, {
+        [styles.transparentHeader]: isTransparent,
+      })}
+    >
       <h1 className={styles.logo} onClick={() => router.push("/")}>
         AceSpace
       </h1>

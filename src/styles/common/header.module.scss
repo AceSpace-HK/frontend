@@ -1,21 +1,59 @@
 @import "../variables.scss";
 
+/* 기본 헤더 */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 2rem;
-  background-color: $secondary-color;
-  color: white;
+  background-color: transparent;
+  color: $secondary-color;
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .authButtons {
+    display: flex;
+    gap: 1rem;
+    cursor: pointer;
+
+    button {
+      border: 1px solid $secondary-color;
+      color: $secondary-color;
+    }
+  }
 }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.authButtons {
+/* 메인 페이지용 투명 헤더 */
+.transparentHeader {
+  background-color: transparent;
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  padding: 0 40px;
   display: flex;
-  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+
+  .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+  }
+
+  .authButtons {
+    display: flex;
+    gap: 12px;
+
+    button {
+      border: 1px solid white;
+      color: white;
+    }
+  }
 }

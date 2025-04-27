@@ -61,7 +61,7 @@ const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
   return (
     <Modal isOpen={isOpen} onClose={handleModalClose}>
       <div className={styles.wrapper}>
-        <h2>Login</h2>
+        <h2 className={styles.title}>Login</h2>
         <Input
           type="email"
           placeholder="Email"

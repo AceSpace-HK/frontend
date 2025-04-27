@@ -1,5 +1,5 @@
 import { loginApi, signUpApi } from "@/api/authApi";
-import { useState } from "react";
+import { toast } from "react-toastify";
 
 interface SignupData {
   email: string;
@@ -21,7 +21,7 @@ const useAuth = () => {
     nickname,
   }: SignupData) => {
     if (password !== confirmPassword) {
-      alert("Passwords do not match.");
+      toast.error("Passwords do not match.");
       return { success: false };
     }
     try {
@@ -30,11 +30,11 @@ const useAuth = () => {
         alert("Sign-up successful.");
         return { success: true };
       } else {
-        alert(response.data.message || "Sign-up failed.");
+        toast.error(response.data.message || "Sign-up failed.");
       }
     } catch (error) {
       console.error("Sign-up error:", error);
-      alert("An error occurred during sign-up.");
+      toast.error("An error occurred during sign-up.");
     }
     return { success: false };
   };
@@ -43,16 +43,16 @@ const useAuth = () => {
     try {
       const response = await loginApi({ email, password });
       if (response.data.code === 200) {
-        alert("Login successful!");
+        toast.success("Login successful!");
         console.log(response.data);
         const token = response.data.token;
         return { success: true };
       } else {
-        alert(response.data.message || "Login failed.");
+        toast.error(response.data.message || "Login failed.");
       }
     } catch (error) {
       console.error("Login error:", error);
-      alert("An error occurred during login.");
+      toast.error("An error occurred during login.");
     }
     return { success: false };
   };

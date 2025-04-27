@@ -12,30 +12,6 @@
   filter: brightness(50%);
 }
 
-.header {
-  position: absolute;
-  top: 20px;
-  left: 0;
-  right: 0;
-  padding: 0 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 10;
-}
-
-.logo {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: $white;
-  cursor: pointer;
-}
-
-.authButtons {
-  display: flex;
-  gap: 12px;
-}
-
 .overlay {
   position: absolute;
   top: 50%;
